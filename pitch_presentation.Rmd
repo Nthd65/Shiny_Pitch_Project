@@ -1,0 +1,64 @@
+---
+title: 'Predicting Car Mileage: A Simple Shiny App'
+author: "Nguyen Tran Hai Dang"
+date: "November 14, 2025"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Load necessary data and model for code chunks
+data(mtcars)
+mpg_model <- lm(mpg ~ hp, data = mtcars)
+```
+
+## Introductions
+App Name: Simple MPG Predictor
+Goal: Provide a quick, interactive tool to estimate a car's fuel efficiency based on its engine power.
+
+Technologies: Shiny, R Markdown
+
+Link to App: https://nthd65.shinyapps.io/shiny_pitch_project/
+
+## The Challenge and The Solution 
+Challenge: Estimating Fuel Efficiency
+In automotive analysis, quickly assessing the MPG-HP trade-off is crucial. Our application addresses this by providing an immediate, data-driven estimate.
+
+Our Solution: A Simple Predictive Model
+We use the classic mtcars dataset and a Linear Regression Model to establish the relationship:
+$$MPG \approx \beta_0 + \beta_1 \times HP$$
+
+
+## Model Verification 
+Core Model Statistics
+The application's logic is based on this simple linear model. Here are the key coefficients from the R code evaluated during the presentation generation process:
+
+```{r}
+# Embedded R code that gets run and displayed
+summary(mpg_model)$coefficients
+```
+
+Interpretation
+(Intercept): The estimated MPG when HP is zero (not practically meaningful, but essential for the model).
+
+hp: The negative coefficient (`r round(summary(mpg_model)$coefficients[2,1], 4)`) shows that for every 1 unit increase in HP, MPG decreases by about `r abs(round(summary(mpg_model)$coefficients[2,1], 4))` units.
+
+
+## Application Features
+Key Features of the App
+Input Widget: A slider for smooth, intuitive selection of Horsepower. (Meets requirement for widget input)
+
+Reactive Calculation: The prediction is updated instantly using the R model in server.R. (Meets requirement for calculation)
+
+Visualization: An interactive plot displays the data and highlights the prediction point in red. (Meets requirement for reactive output)
+
+App Screenshot
+
+## Next Steps & Conclusion 
+Conclusion
+The Shiny application successfully demonstrates the ability to translate a simple statistical model into a practical, interactive web tool.
+
+Next Steps
+Integrate more predictors (e.g., Weight, Displacement) for multi-variable prediction.
+
+Add a visual output displaying the Confidence Interval for the prediction to show uncertainty.
